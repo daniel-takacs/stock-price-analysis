@@ -1,15 +1,13 @@
 import React from 'react'
 
-function Header() {
-    const [start, setStart] = React.useState("")
-    const [end, setEnd] = React.useState("")
-
+function Header({ start, setStart, end, setEnd }) {
+   
     const startDateHandle = (e)=> {
-        setStart((e.target.value).split('/').reverse().join(""))
+        setStart((e.target.value).split('-').reverse().join("/"))
     }
     console.log(start)
     const endDateHandle = (e)=> {
-        setEnd(e.target.value)
+        setEnd((e.target.value).split('-').reverse().join("/"))
     }
     console.log(end)
 

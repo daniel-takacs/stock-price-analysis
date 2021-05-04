@@ -1,36 +1,40 @@
-import './App.css';
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect} from "react";
+import "./App.css";
 
 function App() {
-  const [items, setItems] = useState([])
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const url = "https://www.nasdaq.com/api/v1/historical/AAPL/stocks/2020-01-20/2021-01-20"
-    const headers = new Headers();
-    headers.append('Accept', 'application/json');
-    const request = new Request(url,
-      {
-        method: 'POST',
-        headers: {
-          'Accept-Encoding': 'deflate',
-          'Connection': 'keep-alive',
-          'User-Agent': 'Script',
+    fetch("./data.json")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
         },
-        mode: 'cors'
-      }
-    );
-    fetch(request)
-    .then(
-    response => response.json()
-    )
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }, [])
 
-console.log(request)
-  return (
-    <div className="App">
-      start
-    </div>
-  );
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            {item.Date} {item.High}
+          </li>
+        ))}
+      </ul>
+    );
+  }
 }
-
 export default App;

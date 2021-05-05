@@ -21,20 +21,35 @@ function ReadData({ start, setStart, end, setEnd }) {
       )
   }, [])
 
+  const startDate = "01/20/2020"
+  const endDate = "01/24/2020"
+
+  let result = items.filter((item) => {
+    return item.Date >= start && item.Date <= end
+  })
+  console.log(result)
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    return (
-      <ul>
-        {items.map((item, id) => (
-          <li key={item.id}>
-            {item.Date} {item.High}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+    return(
+      items.filter((item)=> {
+        return item.Date >= start && item.Date <= end 
+      }).map((item, id)=> (
+        <ul key={id}> 
+            <li>
+              <div>Date:{item.Date}</div>
+              <div>Volume:{item.Volume}</div>
+              <div>Open:{item.Open}</div>
+              <div>High:{item.High}</div>
+              <div>Low:{item.Low}</div>
+            </li>
+        </ul>
+        
+        ))
+        )
+      }
 }
 export default ReadData;

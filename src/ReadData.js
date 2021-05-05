@@ -29,6 +29,11 @@ function ReadData({ start, setStart, end, setEnd }) {
   })
   console.log(result)
 
+  let sum = result.map((res) => {
+    return res['Close/Last']
+  })
+  console.log('sum of closelast', sum)
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -41,6 +46,7 @@ function ReadData({ start, setStart, end, setEnd }) {
         <ul key={id}> 
             <li>
               <div>Date:{item.Date}</div>
+              <div>Close/Last:{item['Close/Last']}</div>
               <div>Volume:{item.Volume}</div>
               <div>Open:{item.Open}</div>
               <div>High:{item.High}</div>

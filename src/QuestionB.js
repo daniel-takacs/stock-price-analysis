@@ -35,13 +35,24 @@ function QuestionB({items, start, end, filteredDateRange}) {
     console.log('convertingToNumbers', highestVolumeArr)
 
     let theHighestVolume = Math.max(...highestVolumeArr)
+    let theHighestVolumeToString = theHighestVolume.toString()
+    console.log('thehighest volume', theHighestVolume)
 
-  
+    console.log('vissza stingge', theHighestVolumeToString)
+
+    let obj = filteredDateRange.find(o => o.Volume === theHighestVolumeToString);
+
+    if (obj === undefined || null) return <h2>...Loading</h2>
+    console.log('obj',obj);
+
+    let theHighestVolumeDate = Object.values(obj)[0]
+
+    console.log('a datum', theHighestVolumeDate)
 
     return (
         <div>
             <h2>Question B:</h2>
-            <p>Highest trading volume: {theHighestVolume}</p>
+            <p>The highest trading volume: ${theHighestVolume} was on {theHighestVolumeDate}</p>
         </div>
     )
 }

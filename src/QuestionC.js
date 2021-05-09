@@ -11,7 +11,40 @@ Expected output: List of dates and price change percentages. The list is ordered
 change percentages.
 
 */
-function QuestionC() {
+function QuestionC( {filteredDateRange} ) {
+
+      //map to filtered data and return close/last value as a string 
+const mapped = filteredDateRange.map((res) => {
+    return res['Close/Last']
+  })
+
+  //console.log('filter', filtered)
+  console.log('map', mapped)
+
+let arr = []
+//console.log('new arr', arr)
+//
+function convertingToNumbers(obj) {
+    for(let i=0;i<obj.length;i++){
+        let temp = mapped[i]
+        let conv = temp.split('$').join("")
+        let closeLastFloat = parseFloat(conv)  
+        //console.log('closeLastFloat', closeLastFloat)
+        arr.push(closeLastFloat)
+    }
+}
+convertingToNumbers(mapped)
+let sum = 0
+function avrCalc(){
+   for(let i=0;i<arr.length;i++){
+        sum = sum + arr[i]
+       //console.log('sum',sum)
+    }
+    let avr = sum / arr.length
+    console.log('avr',avr)
+}
+avrCalc()
+
     return (
         <div>
             <h2>Question C:</h2>

@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import ReadData from './ReadData'
 import Header from './Header'
 import QuestionA from './QuestionA'
-import QuestionB from './QuestionB'
+import QuestionB_a from './QuestionB_a'
+import QuestionB_b from './QuestionB_b'
 import QuestionC from './QuestionC'
 
 function App() {
@@ -53,12 +54,18 @@ function App() {
         items={items} 
         start={start} 
         end={end}/>
-      <QuestionB 
+      <QuestionB_a 
         filteredDateRange={filteredDateRange}
         items={items} 
         start={start} 
         end={end}/>
-      <QuestionC />
+      <QuestionB_b 
+        filteredDateRange={filteredDateRange}
+        items={items} 
+        start={start} 
+        end={end}/>
+      <QuestionC 
+        filteredDateRange={filteredDateRange}/>
     </div>
   )
 }

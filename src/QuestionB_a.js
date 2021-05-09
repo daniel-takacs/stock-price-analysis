@@ -14,7 +14,7 @@ So if two dates have the same volume, the one with the more significant price
 change should come first.
 
 */
-function QuestionB({items, start, end, filteredDateRange}) {
+function QuestionB_a({items, start, end, filteredDateRange}) {
 
     const mappedHighestTradingVolume = filteredDateRange.map((res)=> {
         return res.Volume
@@ -22,6 +22,7 @@ function QuestionB({items, start, end, filteredDateRange}) {
     console.log('HighestTradingVolume', mappedHighestTradingVolume)
 
     let highestVolumeArr = []
+    
     function convertingToNumbers(obj) {
         for(let i=0;i<obj.length;i++){
             let temp = mappedHighestTradingVolume[i]
@@ -32,29 +33,30 @@ function QuestionB({items, start, end, filteredDateRange}) {
         }
     }
     convertingToNumbers(mappedHighestTradingVolume)
-    console.log('convertingToNumbers', highestVolumeArr)
+    //console.log('convertingToNumbers', highestVolumeArr)
 
     let theHighestVolume = Math.max(...highestVolumeArr)
     let theHighestVolumeToString = theHighestVolume.toString()
-    console.log('thehighest volume', theHighestVolume)
+    //console.log('thehighest volume', theHighestVolume)
 
-    console.log('vissza stingge', theHighestVolumeToString)
+    //console.log('vissza stingge', theHighestVolumeToString)
 
     let obj = filteredDateRange.find(o => o.Volume === theHighestVolumeToString);
 
     if (obj === undefined || null) return <h2>...Loading</h2>
-    console.log('obj',obj);
+    //console.log('obj',obj);
 
     let theHighestVolumeDate = Object.values(obj)[0]
 
-    console.log('a datum', theHighestVolumeDate)
+    //console.log('a datum', theHighestVolumeDate)
 
     return (
         <div>
             <h2>Question B:</h2>
             <p>The highest trading volume: ${theHighestVolume} was on {theHighestVolumeDate}</p>
+    
         </div>
     )
 }
 
-export default QuestionB
+export default QuestionB_a

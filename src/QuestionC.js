@@ -12,44 +12,73 @@ change percentages.
 
 */
 function QuestionC( {filteredDateRange} ) {
-
-      //map to filtered data and return close/last value as a string 
-const mapped = filteredDateRange.map((res) => {
-    return res['Close/Last']
-  })
-
-  //console.log('filter', filtered)
-  console.log('map', mapped)
-
-let arr = []
-//console.log('new arr', arr)
-//
-function convertingToNumbers(obj) {
-    for(let i=0;i<obj.length;i++){
-        let temp = mapped[i]
-        let conv = temp.split('$').join("")
-        let closeLastFloat = parseFloat(conv)  
-        //console.log('closeLastFloat', closeLastFloat)
-        arr.push(closeLastFloat)
+    //map to filtered data and return close/last value as a string 
+        const mapped = filteredDateRange.map((res) => {
+        return res['Close/Last']
+    })
+    let mappedOpen = filteredDateRange.map((res) => {
+        return res.Open
+    })
+    let arr = []
+    function convertingToNumbers(obj) {
+        for(let i=0;i<obj.length;i++){
+            let temp = mapped[i]
+            let conv = temp.split('$').join("")
+            let closeLastFloat = parseFloat(conv)  
+            arr.push(closeLastFloat)
+        }
     }
-}
-convertingToNumbers(mapped)
-let sum = 0
-function avrCalc(){
-   for(let i=0;i<arr.length;i++){
-        sum = sum + arr[i]
-       //console.log('sum',sum)
+    convertingToNumbers(mapped)
+
+
+    let openArr = []
+
+    function convertingToNumbersOpen(obj) {
+        for(let i=0;i<obj.length;i++){
+            let temp = mappedOpen[i]
+            let conv = temp.split('$').join("")
+            let openFloat = parseFloat(conv)  
+            openArr.push(openFloat)
+        }
     }
-    let avr = sum / arr.length
-    console.log('avr',avr)
-}
-avrCalc()
+    convertingToNumbersOpen(mappedOpen)
+    console.log('open',openArr)
 
-    return (
-        <div>
-            <h2>Question C:</h2>
-        </div>
-    )
-}
+    let sum = 0
+    let avr = 0
 
-export default QuestionC
+    function avrCalc(){
+        for(let i=0;i<arr.length;i++){
+            sum = sum + arr[i]
+        }
+    return avr = (sum / arr.length).toFixed(2)
+    }
+    
+    avrCalc()
+
+    let tempArr = []
+    for(let i=0;i<openArr.length; i++){
+        if(openArr[i] > avr) {
+            tempArr.push(openArr[i])
+        }
+    }
+
+    let maxOpen = Math.max(...tempArr)
+    let maxOpenToString = maxOpen.toString()
+    maxOpenToString = "$"+ maxOpenToString
+    //let bestOpenConvertedToString = tempArr.map(String)
+    //console.log('stringge', bestOpenConvertedToString)
+    let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
+
+    if (obj === undefined || null) return <h2>...Loading</h2>
+        let theBestOpenDate = Object.values(obj)[0]
+        return (
+            <div>
+                <h2>Question C:</h2>
+                <p>Average value of closing price between a given date range: ${avr}</p>
+                <p>the best openin price was on: {theBestOpenDate}</p>
+            </div>
+        )
+    }
+
+    export default QuestionC

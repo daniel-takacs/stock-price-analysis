@@ -7,18 +7,13 @@ const mapped = filteredDateRange.map((res) => {
     return res['Close/Last']
   })
 
-  //console.log('filter', filtered)
-  //console.log('map', mapped)
-
 let arr = []
-//console.log('new arr', arr)
-//
+
 function convertingToNumbers(obj) {
     for(let i=0;i<obj.length;i++){
         let temp = mapped[i]
         let conv = temp.split('$').join("")
         let closeLastFloat = parseFloat(conv)  
-        console.log('closeLastFloat', closeLastFloat)
         arr.push(closeLastFloat)
     }
 }
@@ -29,12 +24,10 @@ convertingToNumbers(mapped)
 let k=0
 function increaseCalc(){
    for(let j=0;j<arr.length;j++){
-       //console.log('element',arr[j])
        if(arr[j] > arr[j-1]){
        k++
        }
     }
-    console.log('total', k)
 }
 increaseCalc()
 

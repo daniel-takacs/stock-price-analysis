@@ -19,20 +19,15 @@ function QuestionB_b( {filteredDateRange} ) {
     const mappedMostSignificantHigh = filteredDateRange.map((res)=> {
         return res.High;
     })
-    console.log('high', mappedMostSignificantHigh)
 
     const mappedMostSignificantLow = filteredDateRange.map((res)=> {
         return res.Low;
     })
-    console.log('low', mappedMostSignificantLow)
-
-
+   
     let highArr = []
     for (let i=0;i<mappedMostSignificantHigh.length;i++) {
         let temp = mappedMostSignificantHigh[i]
-        //console.log(temp)
         let convert = temp.split('$').join("")
-        //console.log(convert)
         let parse = parseFloat(convert)
         highArr.push(parse)
     }
@@ -41,24 +36,17 @@ function QuestionB_b( {filteredDateRange} ) {
     let lowArr = []
     for (let i=0;i<mappedMostSignificantLow.length;i++) {
         let temp = mappedMostSignificantLow[i]
-        //console.log(temp)
         let convert = temp.split('$').join("")
-        //console.log(convert)
         let parse = parseFloat(convert)
         lowArr.push(parse)
     }
-    console.log('lowArr', lowArr)
 
     let diff = highArr.map((a, i) => a - lowArr[i])
-    console.log(diff)
     let maxDiff = Math.max(...diff).toFixed(2)
-    console.log(maxDiff)
-
-   
 
     return (
         <div>
-            the mst significant stock price change : ${maxDiff}
+            the most significant stock price change : ${maxDiff}
         </div>
     )
 }

@@ -19,7 +19,6 @@ function QuestionB_a({items, start, end, filteredDateRange}) {
     const mappedHighestTradingVolume = filteredDateRange.map((res)=> {
         return res.Volume
     })
-    console.log('HighestTradingVolume', mappedHighestTradingVolume)
 
     let highestVolumeArr = []
     
@@ -28,29 +27,22 @@ function QuestionB_a({items, start, end, filteredDateRange}) {
             let temp = mappedHighestTradingVolume[i]
             let conv = temp.split('').join("")
             let volumeToNumber = parseFloat(conv)  
-            //console.log('volume', volumeToNumber)
             highestVolumeArr.push(volumeToNumber)
         }
     }
     convertingToNumbers(mappedHighestTradingVolume)
-    //console.log('convertingToNumbers', highestVolumeArr)
 
     let theHighestVolume = Math.max(...highestVolumeArr)
     let theHighestVolumeToString = theHighestVolume.toString()
-    //console.log('thehighest volume', theHighestVolume)
-
-    //console.log('vissza stingge', theHighestVolumeToString)
 
     let obj = filteredDateRange.find(o => o.Volume === theHighestVolumeToString);
 
     if (obj === undefined || null) return <h2>...Loading</h2>
-    //console.log('obj',obj);
 
     let theHighestVolumeDate = Object.values(obj)[0]
 
-    //console.log('a datum', theHighestVolumeDate)
-
     return (
+
         <div>
             <h2>Question B:</h2>
             <p>The highest trading volume: ${theHighestVolume} was on {theHighestVolumeDate}</p>

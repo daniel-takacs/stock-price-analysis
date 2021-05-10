@@ -19,6 +19,8 @@ function QuestionC( {filteredDateRange} ) {
     let mappedOpen = filteredDateRange.map((res) => {
         return res.Open
     })
+    console.log('filtered', filteredDateRange)
+    console.log('mappedopen', mappedOpen)
     let arr = []
     function convertingToNumbers(obj) {
         for(let i=0;i<obj.length;i++){
@@ -63,20 +65,39 @@ function QuestionC( {filteredDateRange} ) {
         }
     }
 
-    let maxOpen = Math.max(...tempArr)
-    let maxOpenToString = maxOpen.toString()
-    maxOpenToString = "$"+ maxOpenToString
-    //let bestOpenConvertedToString = tempArr.map(String)
-    //console.log('stringge', bestOpenConvertedToString)
-    let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
+    
 
-    if (obj === undefined || null) return <h2>...Loading</h2>
-        let theBestOpenDate = Object.values(obj)[0]
+    let maxOpen = tempArr
+    //let maxOpenToString = maxOpen.toString()
+    //console.log('aa',maxOpen)
+    //maxOpenToString = "$"+ maxOpenToString
+    let bestOpenConvertedToString = tempArr.map(String)
+
+    for(let i=0;i<bestOpenConvertedToString.length;i++){
+         bestOpenConvertedToString[i] = "$"+ bestOpenConvertedToString[i]
+    }
+    console.log('stringge', bestOpenConvertedToString)
+
+    let obj = []
+    for(let i=0;i<bestOpenConvertedToString.length;i++){
+        for(let j=0;j<filteredDateRange.length;j++){
+            if(bestOpenConvertedToString[i] === filteredDateRange.Open[j]){
+                obj.push(filteredDateRange[0])    
+            }
+        }
+    }
+    let openDate = Object.values(obj)[0]
+    console.log('openDate',openDate)
+    console.log('obj',obj)
+    //let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
+
+    //if (obj === undefined || null) return <h2>...Loading</h2>
+      //  let theBestOpenDate = Object.values(obj)[0]
         return (
             <div>
                 <h2>Question C:</h2>
                 <p>Average value of closing price between a given date range: ${avr}</p>
-                <p>the best openin price was on: {theBestOpenDate}</p>
+                <p>the best openin price was on: </p>
             </div>
         )
     }

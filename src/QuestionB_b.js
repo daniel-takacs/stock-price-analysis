@@ -31,7 +31,7 @@ function QuestionB_b( {filteredDateRange} ) {
         let parse = parseFloat(convert)
         highArr.push(parse)
     }
-    console.log('highArr', highArr)
+    //console.log('highArr', highArr)
 
     let lowArr = []
     for (let i=0;i<mappedMostSignificantLow.length;i++) {

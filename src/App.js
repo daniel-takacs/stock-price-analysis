@@ -8,16 +8,34 @@ import QuestionC from './QuestionC'
 
 function App() {
 
-  const [start, setStart] = React.useState("")
-  const [end, setEnd] = React.useState("")
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  let filteredDateRange = items.filter((item)=> {
-    return item.Date >= start && item.Date <= end
-  })
+  function convertDate(inputFormat) {
+    function pad(s) { return (s < 10) ? '0' + s : s; }
+    let d = new Date(inputFormat);
+    return [ pad(d.getMonth()+1), pad(d.getDate()), d.getFullYear()].join('/');
+  }
   
+  let convertedStartDate = convertDate(startDate);
+  let convertedEndDate = convertDate(endDate);
+  
+  console.log('atalakitott',convertedStartDate);
+  console.log('atalakitott',convertedEndDate);
+
+
+  //const convertedStartDate = "01/10/2021"
+  //const convertedEndDate = "01/18/2021"
+  let filteredDateRange = items.filter((item)=> {
+    return item.Date >= convertedStartDate && item.Date <= convertedEndDate
+  })
+  console.log('filtered date range', filteredDateRange)
+  
+  //console.log('startDate',startDate)
+
   /*let dateMapedAndFilteredDateRange = filteredDateRange.map((item) => {
     return item.Date
   })
@@ -30,19 +48,20 @@ function App() {
   console.log('NEZZUK A SORRENDER', sortedAndFilteredDateRange)
   */
 
+
+
+ 
+
+
   return (
     <div>
       <Header 
-        start={start} 
-        setStart={setStart} 
-        end={end} 
-        setEnd={setEnd}/>
+        startDate={startDate} 
+        setStartDate={setStartDate} 
+        endDate={endDate} 
+        setEndDate={setEndDate}/>
       <ReadData 
         filteredDateRange={filteredDateRange}
-        start={start} 
-        setStart={setStart} 
-        end={end} 
-        setEnd={setEnd}
         error={error}
         setError={setError}
         isLoaded={isLoaded}
@@ -52,18 +71,17 @@ function App() {
       <QuestionA 
         filteredDateRange={filteredDateRange}
         items={items} 
-        start={start} 
-        end={end}/>
+        convertedStartDate={convertedStartDate}/>
       <QuestionB_a 
         filteredDateRange={filteredDateRange}
         items={items} 
-        start={start} 
-        end={end}/>
+        startDate={startDate} 
+        setEndDate={setEndDate}/>
       <QuestionB_b 
         filteredDateRange={filteredDateRange}
         items={items} 
-        start={start} 
-        end={end}/>
+        startDate={startDate} 
+        setEndDate={setEndDate}/>
       <QuestionC 
         filteredDateRange={filteredDateRange}/>
     </div>

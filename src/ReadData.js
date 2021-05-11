@@ -1,7 +1,9 @@
 import React, {useEffect} from "react";
 import "./App.css";
+import List from "./List";
 
-function ReadData({ start, end, error, isLoaded, setIsLoaded, setItems, setError, items, filteredDateRange }) {
+function ReadData({ error, isLoaded, setIsLoaded, 
+  setItems, setError, filteredDateRange }) {
 
 useEffect(() => {
   fetch("./data.json")
@@ -24,18 +26,9 @@ if (error) {
   return <div>Loading...</div>;
 } else {
   return(
-   filteredDateRange.map((item, id)=> (
-      <ul key={id}> 
-          <li>
-            <div>Date:{item.Date}</div>
-            <div>Close/Last:{item['Close/Last']}</div>
-            <div>Volume:{item.Volume}</div>
-            <div>Open:{item.Open}</div>
-            <div>High:{item.High}</div>
-            <div>Low:{item.Low}</div>
-          </li>
-      </ul>
-      ))
+      <div className="list">
+        <List filteredDateRange={filteredDateRange}/>
+      </div>
       )
     }
 }

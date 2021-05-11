@@ -67,7 +67,7 @@ function QuestionC( {filteredDateRange} ) {
 
     
 
-    let maxOpen = tempArr
+    //let maxOpen = tempArr
     //let maxOpenToString = maxOpen.toString()
     //console.log('aa',maxOpen)
     //maxOpenToString = "$"+ maxOpenToString
@@ -78,17 +78,7 @@ function QuestionC( {filteredDateRange} ) {
     }
     console.log('stringge', bestOpenConvertedToString)
 
-    let obj = []
-    for(let i=0;i<bestOpenConvertedToString.length;i++){
-        for(let j=0;j<filteredDateRange.length;j++){
-            if(bestOpenConvertedToString[i] === filteredDateRange.Open[j]){
-                obj.push(filteredDateRange[0])    
-            }
-        }
-    }
-    let openDate = Object.values(obj)[0]
-    console.log('openDate',openDate)
-    console.log('obj',obj)
+    
     //let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
 
     //if (obj === undefined || null) return <h2>...Loading</h2>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function QuestionA( {items, start, end, filteredDateRange} ) {
+function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) {
 
   //map to filtered data and return close/last value as a string 
 const mapped = filteredDateRange.map((res) => {
@@ -34,7 +34,8 @@ increaseCalc()
 return (
     <div>
         <h2>Question A:</h2>
-        <p>In Apple stock historical data the Close/Last price increased {k} days in a row between {start} and {end}</p>
+        <p>In Apple stock historical data the Close/Last price increased {k} 
+        days in a row between {convertedStartDate} and {convertedEndDate}</p>
     </div>
 )
 }

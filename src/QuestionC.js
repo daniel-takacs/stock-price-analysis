@@ -32,7 +32,6 @@ function QuestionC( {filteredDateRange} ) {
     }
     convertingToNumbers(mapped)
 
-
     let openArr = []
 
     function convertingToNumbersOpen(obj) {
@@ -55,7 +54,6 @@ function QuestionC( {filteredDateRange} ) {
         }
     return avr = (sum / arr.length).toFixed(2)
     }
-    
     avrCalc()
 
     let tempArr = []
@@ -64,9 +62,6 @@ function QuestionC( {filteredDateRange} ) {
             tempArr.push(openArr[i])
         }
     }
-
-    
-
     //let maxOpen = tempArr
     //let maxOpenToString = maxOpen.toString()
     //console.log('aa',maxOpen)
@@ -77,10 +72,7 @@ function QuestionC( {filteredDateRange} ) {
          bestOpenConvertedToString[i] = "$"+ bestOpenConvertedToString[i]
     }
     console.log('stringge', bestOpenConvertedToString)
-
-    
     //let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
-
     //if (obj === undefined || null) return <h2>...Loading</h2>
       //  let theBestOpenDate = Object.values(obj)[0]
         return (

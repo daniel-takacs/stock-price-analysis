@@ -8,31 +8,30 @@ import QuestionC from './QuestionC'
 
 function App() {
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date("2020/01/21"));
+  const [endDate, setEndDate] = useState(new Date("2020/01/21"));
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
   function convertDate(inputFormat) {
     function pad(s) { return (s < 10) ? '0' + s : s; }
-    let d = new Date(inputFormat);
-    return [ pad(d.getMonth()+1), pad(d.getDate()), d.getFullYear()].join('/');
+      let d = new Date(inputFormat);
+      return [ pad(d.getMonth()+1), pad(d.getDate()), d.getFullYear()].join('/');
   }
   
   let convertedStartDate = convertDate(startDate);
   let convertedEndDate = convertDate(endDate);
   
-  console.log('atalakitott',convertedStartDate);
-  console.log('atalakitott',convertedEndDate);
-
-
+  //console.log('atalakitott',convertedStartDate);
+  //console.log('atalakitott',convertedEndDate);
   //const convertedStartDate = "01/10/2021"
   //const convertedEndDate = "01/18/2021"
   let filteredDateRange = items.filter((item)=> {
     return item.Date >= convertedStartDate && item.Date <= convertedEndDate
   })
-  console.log('filtered date range', filteredDateRange)
+  filteredDateRange.reverse()
+  //console.log('filtered date range', filteredDateRange)
   
   //console.log('startDate',startDate)
 
@@ -47,12 +46,6 @@ function App() {
   
   console.log('NEZZUK A SORRENDER', sortedAndFilteredDateRange)
   */
-
-
-
- 
-
-
   return (
     <div>
       <Header 
@@ -69,10 +62,12 @@ function App() {
         items={items}
         setItems={setItems}/>
       <QuestionA 
+        convertedEndDate={convertedEndDate}
         filteredDateRange={filteredDateRange}
         items={items} 
         convertedStartDate={convertedStartDate}/>
       <QuestionB_a 
+        convertedEndDate={convertedEndDate}
         filteredDateRange={filteredDateRange}
         items={items} 
         startDate={startDate} 

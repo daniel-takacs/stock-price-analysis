@@ -23,12 +23,11 @@ function Header({ startDate, setStartDate, endDate, setEndDate }) {
         return tmp2
     }*/
 
-
-
-
     return (
         <>
       <DatePicker
+        minDate={new Date("01-21-2020")}
+        maxDate={new Date("01-20-2021")}
         selected={startDate}
         onChange={date => setStartDate(date)}
         selectsStart
@@ -36,6 +35,8 @@ function Header({ startDate, setStartDate, endDate, setEndDate }) {
         endDate={endDate}
       />
       <DatePicker
+        minDate={new Date("01-21-2020")}
+        maxDate={new Date("01-20-2021")}
         selected={endDate}
         onChange={date => setEndDate(date)}
         selectsEnd

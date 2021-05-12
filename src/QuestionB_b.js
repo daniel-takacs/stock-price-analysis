@@ -46,7 +46,7 @@ function QuestionB_b( {filteredDateRange} ) {
 
     return (
         <div>
-            the most significant stock price change : ${maxDiff}
+            The most significant stock price change : ${maxDiff}
         </div>
     )
 }

@@ -11,13 +11,13 @@ Example: In Apple stock historical data the Close/Last price increased 3 days in
 
 */
 function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) {
-
+    //map each close/last values from a given date range
     const mapped = filteredDateRange.map((res) => {
         return res['Close/Last']
     })
 
     let arr = []
-
+    //close/last values converting to float numbers
     function convertingToNumbers(obj) {
         for(let i=0;i<obj.length;i++){
             let temp = mapped[i]
@@ -34,6 +34,8 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
     let bestLength = 1;
     let curLength  = 1;
 
+    //check upward trend and push element to tempArr array
+    let tempArr = []
         function bullishTrendCalc(arr){
             for(let j=0;j<arr.length;j++){
                 if(arr[j] > arr[j-1]){
@@ -41,6 +43,7 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
                     if(curLength > bestLength){
                         bestStart = curStart
                         bestLength = curLength
+                        tempArr.push(arr[j])
                     }
                 }else {
                     curStart = j
@@ -49,7 +52,25 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
             }
         }
     bullishTrendCalc(arr)
+
+    console.log('tempArr', tempArr)
+
+    //converting upward trend elements in tempArr to string and adding $
+
+    let upwardElementsConvertedToString = tempArr.map(String)
+
+    for(let i=0;i<upwardElementsConvertedToString.length;i++){
+        upwardElementsConvertedToString[i] = "$"+ upwardElementsConvertedToString[i]
+    }
+    console.log('upward stringge', upwardElementsConvertedToString)
+
+
+    //find upward trend values from a given date range and return Date value
+
+
+
     
+
     return (
         <div>
             <h2>Question A:</h2>

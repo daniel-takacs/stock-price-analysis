@@ -75,6 +75,10 @@ function QuestionC( {filteredDateRange} ) {
     //let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
     //if (obj === undefined || null) return <h2>...Loading</h2>
       //  let theBestOpenDate = Object.values(obj)[0]
+
+
+    //find best open from tempArr and return Date of object
+
         return (
             <div>
                 <h2>Question C:</h2>

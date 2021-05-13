@@ -27,8 +27,7 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
         }
     }
     convertingToNumbers(mapped)
-    //console.log('array', arr)
-  
+
     let bestStart  = 0;
     let curStart   = 0;
     let bestLength = 1;
@@ -53,23 +52,107 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
         }
     bullishTrendCalc(arr)
 
-    console.log('tempArr', tempArr)
-
     //converting upward trend elements in tempArr to string and adding $
 
     let upwardElementsConvertedToString = tempArr.map(String)
-
+    let bullish = []
     for(let i=0;i<upwardElementsConvertedToString.length;i++){
-        upwardElementsConvertedToString[i] = "$"+ upwardElementsConvertedToString[i]
+        bullish.push(upwardElementsConvertedToString[i] = "$"+ upwardElementsConvertedToString[i])
     }
-    console.log('upward stringge', upwardElementsConvertedToString)
 
+
+
+    /*
+    let filteredDateRangea = [
+        {
+              "Date": "01/20/2021",
+              "Close/Last": "$132.03",
+              "Volume": "104319500",
+              "Open": "$128.66",
+              "High": "$132.49",
+              "Low": "$128.55"
+          },
+          {
+              "Date": "01/19/2021",
+              "Close/Last": "$127.83",
+              "Volume": "90757330",
+              "Open": "$127.78",
+              "High": "$128.71",
+              "Low": "$126.938"
+          },
+          {
+              "Date": "01/15/2021",
+              "Close/Last": "$127.14",
+              "Volume": "111598500",
+              "Open": "$128.78",
+              "High": "$130.2242",
+              "Low": "$127"
+          },
+          {
+              "Date": "01/14/2021",
+              "Close/Last": "$128.91",
+              "Volume": "90221760",
+              "Open": "$130.8",
+              "High": "$131",
+              "Low": "$128.76"
+          },
+          {
+              "Date": "01/13/2021",
+              "Close/Last": "$130.89",
+              "Volume": "88636830",
+              "Open": "$128.76",
+              "High": "$131.45",
+              "Low": "$128.49"
+          },
+          {
+              "Date": "01/12/2021",
+              "Close/Last": "$128.8",
+              "Volume": "91951150",
+              "Open": "$128.5",
+              "High": "$129.69",
+              "Low": "$126.86"
+          },
+          {
+              "Date": "01/11/2021",
+              "Close/Last": "$128.98",
+              "Volume": "100620900",
+              "Open": "$129.19",
+              "High": "$130.17",
+              "Low": "$128.5"
+          },
+      ];
+      let upwardElementsConvertedToStringa = ["$132.03", "$127.83","$127.14"];
+      
+      let results = [];
+      
+      
+      for(let i=0; i<filteredDateRangea.length; i++) {
+        for(let key in filteredDateRangea[i]) {
+          if(filteredDateRangea[i][key].indexOf(upwardElementsConvertedToStringa[i])!==-1) {
+            results.push(filteredDateRangea[i]);
+          }
+        }
+      }
+      console.log(results)
+
+debugger
+*/
 
     //find upward trend values from a given date range and return Date value
-
-
-
     
+    let results = [];
+    
+    for(let i=0; i<filteredDateRange.length; i++) {
+        for(let key in filteredDateRange[i]) {
+            if(filteredDateRange[i][key].indexOf(bullish[i])!==-1) {
+                results.push(filteredDateRange[i]);
+            }
+        }
+    }
+    console.log('results', results)
+   debugger
+
+   
 
     return (
         <div>

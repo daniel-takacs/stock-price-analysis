@@ -3,7 +3,8 @@ import React from 'react'
 A) How many days was the longest bullish (upward) trend within a given date range?
 
 Definition of an upward trend shall be: “Closing price of day N is higher than closing price of day N-1”
-Read start date and end date of the date range from user input (or pass them as input parameters via the API if your MVP does not have an user interface). 
+Read start date and end date of the date range from user input (or pass them as input parameters via the API
+if your MVP does not have an user interface). 
 Both start and end date shall be included to the date range.
 Expected output: The max amount of days the stock price was increasing in a row
 
@@ -61,7 +62,38 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
     }
 
 
-
+    
+    //find upward trend values from a given date range and return Date value
+    
+    let results = [];
+    
+    for(let i=0; i<filteredDateRange.length; i++) {
+        for(let key in filteredDateRange[i]) {
+            for(let k=0;k<bullish.length;k++){
+                if(filteredDateRange[i][key].indexOf(bullish[k])!==-1) {
+                    results.push(filteredDateRange[i]);
+                }
+            }
+        }
+    }
+    console.log('results', results)
+    
+    for (let values in results){
+        console.log('egyenkent',results[values].Date)
+    }
+    debugger
+    
+    return (
+        <div>
+            <h2>Question A:</h2>
+            <p>In Apple stock historical data the Close/Last price increased {bestLength}
+             days in a row between {convertedStartDate} and {convertedEndDate}</p>
+        </div>
+    )
+    }
+    
+    export default QuestionA
+    
     /*
     let filteredDateRangea = [
         {
@@ -137,30 +169,3 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
 
 debugger
 */
-
-    //find upward trend values from a given date range and return Date value
-    
-    let results = [];
-    
-    for(let i=0; i<filteredDateRange.length; i++) {
-        for(let key in filteredDateRange[i]) {
-            if(filteredDateRange[i][key].indexOf(bullish[i])!==-1) {
-                results.push(filteredDateRange[i]);
-            }
-        }
-    }
-    console.log('results', results)
-   debugger
-
-   
-
-    return (
-        <div>
-            <h2>Question A:</h2>
-            <p>In Apple stock historical data the Close/Last price increased {bestLength}
-             days in a row between {convertedStartDate} and {convertedEndDate}</p>
-        </div>
-    )
-    }
-
-    export default QuestionA

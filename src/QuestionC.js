@@ -1,4 +1,5 @@
 import React from 'react'
+import BestOpeningDates from './BestOpeningDates'
 /*
 C) Within a given date range, which dates had the best opening price compared to 5 days 
 simple moving average (SMA 5)?
@@ -78,12 +79,44 @@ function QuestionC( {filteredDateRange} ) {
 
 
     //find best open from tempArr and return Date of object
+    let bestOpeningDatesObj = [];
+    
+    for(let i=0; i<filteredDateRange.length; i++) {
+        for(let key in filteredDateRange[i]) {
+            for(let k=0;k<tempArr.length;k++){
+                if(filteredDateRange[i][key].indexOf(tempArr[k])!==-1) {
+                    bestOpeningDatesObj.push(filteredDateRange[i]);
+                }
+            }
+        }
+    }
+    console.log('bestOpeningDates', bestOpeningDatesObj)
+
+    //percentages
+    let mappedBestOpenDates = bestOpeningDatesObj.map((date)=> {
+        return date.Date
+    })
+
+    let percArr = []
+    for(let i=0; i<tempArr.length; i++){
+        percArr.push((100-(avr/tempArr[i]*100)).toFixed(2) +"%")
+    }
+    
+    let newObj = {};
+    mappedBestOpenDates.forEach((key, i) => newObj[key] = percArr[i]);
+    console.log('new obj',newObj);
+
+    debugger
 
         return (
             <div>
                 <h2>Question C:</h2>
                 <p>Average value of closing price between a given date range: ${avr}</p>
-                <p>the best openin price was on: </p>
+                <p>List of best opening price dates and price change percentages 
+                    between the opening price of the day 
+                    and the calculated SMA 5 price of the day.:</p>
+                <BestOpeningDates bestOpeningDatesObj={bestOpeningDatesObj}
+                newObj={newObj}/>
             </div>
         )
     }

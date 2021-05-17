@@ -79,9 +79,9 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
     console.log('results', results)
     
     for (let values in results){
-        console.log('egyenkent',results[values].Date)
+        console.log('list of dates',results[values].Date)
     }
-    debugger
+
     
     return (
         <div>

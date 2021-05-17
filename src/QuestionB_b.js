@@ -42,11 +42,33 @@ function QuestionB_b( {filteredDateRange} ) {
     }
 
     let diff = highArr.map((a, i) => a - lowArr[i])
-    let maxDiff = Math.max(...diff).toFixed(2)
+
+    //let maxDiff = Math.max(...diff).toFixed(2)
+
+    let largest = 0
+    function largestDiff(arr){
+        for(let i=0; i<arr.length;i++){
+            if(arr[i] > largest){
+                largest = arr[i]
+            }
+        }
+        return largest
+    }
+
+    largestDiff(diff)
+
+    let largestIndex = diff.indexOf(largest)
+   
+    let largestDateObj = filteredDateRange[largestIndex]
+    
+    let date = filteredDateRange.map((a)=> {
+        return a.Date
+    })
+    let largestDate = date[largestIndex]
 
     return (
         <div>
-            The most significant stock price change : ${maxDiff}
+            The most significant stock price change : ${largest.toFixed(2)} on {largestDate}
         </div>
     )
 }

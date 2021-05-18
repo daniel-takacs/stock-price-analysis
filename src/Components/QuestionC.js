@@ -97,7 +97,7 @@ function QuestionC( {filteredDateRange} ) {
 
     let percArr = []
     for(let i=0; i<tempArr.length; i++){
-        percArr.push((100-(avr/tempArr[i]*100)).toFixed(2) +"%")
+        percArr.push((100-(avr/tempArr[i]*100)).toFixed(2))
     }
     
     //elements from mappedBestOpenDates and percArr moving to newObj

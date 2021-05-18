@@ -1,5 +1,3 @@
-import React from 'react'
-import BestOpeningDates from './BestOpeningDates'
 /*
 C) Within a given date range, which dates had the best opening price compared to 5 days 
 simple moving average (SMA 5)?
@@ -12,17 +10,18 @@ Expected output: List of dates and price change percentages. The list is ordered
 change percentages.
 
 */
+import React from 'react'
+import BestOpeningDates from './BestOpeningDates'
+
 function QuestionC( {filteredDateRange} ) {
     //map to filtered data and return close/last value as a string 
-        const mapped = filteredDateRange.map((res) => {
+    let mapped = filteredDateRange.map((res) => {
         return res['Close/Last']
     })
     //map to filtered data and return "Open" value as a string 
     let mappedOpen = filteredDateRange.map((res) => {
         return res.Open
     })
-    console.log('filtered', filteredDateRange)
-    console.log('mappedopen', mappedOpen)
 
     //converting "Close/Last" values to number
     let closeLastConvertedToFloatNumber = []
@@ -49,7 +48,6 @@ function QuestionC( {filteredDateRange} ) {
         }
     }
     convertingToNumbersOpen(mappedOpen)
-    console.log('open',openConvertedToFloatNumber)
 
     //calculate simple moving average 5 days
     let sum = 0
@@ -59,7 +57,7 @@ function QuestionC( {filteredDateRange} ) {
         for(let i=0;i<5;i++){
             sum = sum + closeLastConvertedToFloatNumber[i]
         }
-    return avr = (sum / 5).toFixed(2)
+        return avr = (sum / 5).toFixed(2)
     }
     avrCalc()
 
@@ -71,13 +69,11 @@ function QuestionC( {filteredDateRange} ) {
         }
     }
     
-
     let bestOpenConvertedToString = tempArr.map(String)
 
     for(let i=0;i<bestOpenConvertedToString.length;i++){
          bestOpenConvertedToString[i] = "$"+ bestOpenConvertedToString[i]
     }
-    console.log('stringge', bestOpenConvertedToString)
 
     //find best open from tempArr and return Date of object
     let bestOpeningDatesObj = [];
@@ -106,26 +102,18 @@ function QuestionC( {filteredDateRange} ) {
         newObj[key] = percArr[i]
     });
     
-    console.log('new obj',newObj);
+    let sorted = Object.entries(newObj)
+        .sort(([,a],[,b]) => parseFloat(a)-parseFloat(b))
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
 
-    let sortable = [];
-        for (let percentages in newObj) {
-            sortable.push([percentages, newObj[percentages]]);
-        }
-
-    sortable.sort(function(a, b) {
-        return a[1] - b[1];
-    })
-
-    debugger
         return (
             <div>
                 <h2>Question C:</h2>
-                <p>Average value of closing price between a given date range: ${avr}</p>
+                <p>Average value of closing price between a given date range: <b>${avr}</b></p>
                 <p>List of best opening price dates and price change percentages 
                     between the opening price of the day 
-                    and the calculated SMA 5 price of the day.:</p>
-                <BestOpeningDates bestOpeningDatesObj={bestOpeningDatesObj} newObj={newObj}/>
+                    and the calculated SMA 5 price of the day:</p>
+                <BestOpeningDates bestOpeningDatesObj={bestOpeningDatesObj} sorted={sorted} newObj={newObj}/>
             </div>
         )
     }

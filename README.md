@@ -1,7 +1,9 @@
-Firstly I converted the csv file to JSON data file. I used npm convert-csv-to-json package, I saved the data to data.js file.
-I used UseEffect hooks to Fetch and read data from data.js.
-I learned JavaScript map, filter, push, indexOf, find method.
-I used for loops, algorithms, functions.
+This is a pre-assigment.
+
+I built with React.
+Firstly converted the csv file to JSON data file. Used npm convert-csv-to-json package, Saved the data to data.js file.
+Used UseEffect hooks to Fetch and read data from data.js.
+I used JavaScript map, filter, push, indexOf, find methods, for loops, algorithms, functions.
 
 
 Assignment - questions:

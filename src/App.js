@@ -23,29 +23,11 @@ function App() {
   let convertedStartDate = convertDate(startDate);
   let convertedEndDate = convertDate(endDate);
   
-  //console.log('atalakitott',convertedStartDate);
-  //console.log('atalakitott',convertedEndDate);
-  //const convertedStartDate = "01/10/2021"
-  //const convertedEndDate = "01/18/2021"
   let filteredDateRange = items.filter((item)=> {
     return item.Date >= convertedStartDate && item.Date <= convertedEndDate
   })
   filteredDateRange.reverse()
-  //console.log('filtered date range', filteredDateRange)
   
-  //console.log('startDate',startDate)
-
-  /*let dateMapedAndFilteredDateRange = filteredDateRange.map((item) => {
-    return item.Date
-  })
-  console.log('dateMaped', dateMapedAndFilteredDateRange)
-  
-  let sortedAndFilteredDateRange = filteredDateRange.sort((a, b) => {
-    return a - b
-  })
-  
-  console.log('NEZZUK A SORRENDER', sortedAndFilteredDateRange)
-  */
   return (
     <div>
       <Header 

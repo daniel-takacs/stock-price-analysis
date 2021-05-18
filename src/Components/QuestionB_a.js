@@ -1,4 +1,3 @@
-import React from 'react'
 /*
 B) Which dates within a given date range had 
 
@@ -14,6 +13,8 @@ So if two dates have the same volume, the one with the more significant price
 change should come first.
 
 */
+import React from 'react'
+
 function QuestionB_a({ filteredDateRange }) {
 
     const mappedHighestTradingVolume = filteredDateRange.map((res)=> {
@@ -45,8 +46,7 @@ function QuestionB_a({ filteredDateRange }) {
 
         <div>
             <h2>Question B:</h2>
-            <p>The highest trading volume: ${theHighestVolume} was on {theHighestVolumeDate}</p>
-    
+            <p>The highest trading volume: <b>${theHighestVolume}</b> was on <b>{theHighestVolumeDate}</b></p>
         </div>
     )
 }

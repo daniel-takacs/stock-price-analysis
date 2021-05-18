@@ -1,13 +1,12 @@
 import React from 'react'
 
-function BestOpeningDates({ bestOpeningDatesObj, newObj }) {
+function BestOpeningDates({ sorted }) {
 
-    console.log('the best', newObj)
     return (
         <div>
             <ul>
-                {Object.keys(newObj).map((date, value)=> 
-                <li key={value}>{date}: {newObj[date]}</li>)}
+                {Object.keys(sorted).map((date, value)=> 
+                <li key={value}>{date}: <b>{sorted[date]}%</b></li>)}
             </ul>
         </div>
     )

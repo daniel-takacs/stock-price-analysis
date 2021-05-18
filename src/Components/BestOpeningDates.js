@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BestOpeningDates({ bestOpeningDatesObj, newObj }) {
+function BestOpeningDates({ newObj }) {
 
     console.log('the best', newObj)
     return (

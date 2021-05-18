@@ -1,27 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 function Header({ startDate, setStartDate, endDate, setEndDate }) {
-   
-    /*const startDateHandle = (e)=> {
-        setStart(convertDate(e.target.value))
-    }
-    console.log(start)
-    const endDateHandle = (e)=> {
-        setEnd(convertDate(e.target.value))
-    }
-    console.log(end)
-
-    /*date input converted a suitable format
-    const format = (v)=> {
-        let tmp = v.split('-').reverse()
-        //console.log(tmp)
-        let tmp2 = ([tmp[0],tmp[1],tmp[2]] = [tmp[1],tmp[0],tmp[2]]).join("/")
-        //console.log(tmp2)
-        return tmp2
-    }*/
 
     return (
         <>

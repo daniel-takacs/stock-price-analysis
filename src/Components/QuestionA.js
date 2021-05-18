@@ -11,7 +11,7 @@ Expected output: The max amount of days the stock price was increasing in a row
 Example: In Apple stock historical data the Close/Last price increased 3 days in a row between 01/06/2021 and 01/08/2021. 
 
 */
-function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) {
+function QuestionA({ filteredDateRange }) {
     //map each close/last values from a given date range
     const mapped = filteredDateRange.map((res) => {
         return res['Close/Last']
@@ -43,7 +43,6 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
                     if(curLength > bestLength){
                         bestStart = curStart
                         bestLength = curLength
-                        tempArr.push(arr[j])
                     }
                 }else {
                     curStart = j
@@ -52,6 +51,11 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
             }
         }
     bullishTrendCalc(arr)
+
+    for(let i=bestStart; i<bestStart+bestLength;i++){
+        tempArr.push(arr[i])
+      }
+      console.log(tempArr)
 
     //converting upward trend elements in tempArr to string and adding $
 
@@ -74,18 +78,20 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
             }
         }
     }
-    console.log('results', results)
-    
+    let dates = []
+
     for (let values in results){
-        console.log('list of dates',results[values].Date)
+        dates.push(results[values].Date)
     }
 
-    
+    let bullishStart = dates[0]
+    let bullishEnd = dates[dates.length-1]
+  
     return (
         <div>
             <h2>Question A:</h2>
             <p>In Apple stock historical data the Close/Last price increased {bestLength}
-             days in a row between {convertedStartDate} and {convertedEndDate}</p>
+             days in a row between {bullishStart} and {bullishEnd}</p>
         </div>
     )
     }

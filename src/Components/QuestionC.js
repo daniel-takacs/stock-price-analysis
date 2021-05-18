@@ -90,17 +90,6 @@ function QuestionC( {filteredDateRange} ) {
         }
     })
 
-    /*for(let i=0; i<filteredDateRange.length; i++) {
-        for(let key in filteredDateRange[i]) {
-            for(let k=0;k<tempArr.length;k++){
-                if(filteredDateRange[i][key].indexOf(tempArr[k])!==-1) {
-                    bestOpeningDatesObj.push(filteredDateRange[i]);
-                }
-            }
-        }
-    }*/
-    console.log('bestOpeningDates', bestOpeningDatesObj)
-
     //calculating percentages
     let mappedBestOpenDates = bestOpeningDatesObj.map((date)=> {
         return date.Date
@@ -119,8 +108,16 @@ function QuestionC( {filteredDateRange} ) {
     
     console.log('new obj',newObj);
 
-    debugger
+    let sortable = [];
+        for (let percentages in newObj) {
+            sortable.push([percentages, newObj[percentages]]);
+        }
 
+    sortable.sort(function(a, b) {
+        return a[1] - b[1];
+    })
+
+    debugger
         return (
             <div>
                 <h2>Question C:</h2>
@@ -128,8 +125,7 @@ function QuestionC( {filteredDateRange} ) {
                 <p>List of best opening price dates and price change percentages 
                     between the opening price of the day 
                     and the calculated SMA 5 price of the day.:</p>
-                <BestOpeningDates bestOpeningDatesObj={bestOpeningDatesObj}
-                newObj={newObj}/>
+                <BestOpeningDates bestOpeningDatesObj={bestOpeningDatesObj} newObj={newObj}/>
             </div>
         )
     }

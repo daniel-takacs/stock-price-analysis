@@ -14,7 +14,7 @@ So if two dates have the same volume, the one with the more significant price
 change should come first.
 
 */
-function QuestionB_a({items, start, end, filteredDateRange}) {
+function QuestionB_a({ filteredDateRange }) {
 
     const mappedHighestTradingVolume = filteredDateRange.map((res)=> {
         return res.Volume

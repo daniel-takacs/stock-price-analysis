@@ -17,71 +17,80 @@ function QuestionC( {filteredDateRange} ) {
         const mapped = filteredDateRange.map((res) => {
         return res['Close/Last']
     })
+    //map to filtered data and return "Open" value as a string 
     let mappedOpen = filteredDateRange.map((res) => {
         return res.Open
     })
     console.log('filtered', filteredDateRange)
     console.log('mappedopen', mappedOpen)
-    let arr = []
+
+    //converting "Close/Last" values to number
+    let closeLastConvertedToFloatNumber = []
+
     function convertingToNumbers(obj) {
         for(let i=0;i<obj.length;i++){
             let temp = mapped[i]
             let conv = temp.split('$').join("")
             let closeLastFloat = parseFloat(conv)  
-            arr.push(closeLastFloat)
+            closeLastConvertedToFloatNumber.push(closeLastFloat)
         }
     }
     convertingToNumbers(mapped)
-
-    let openArr = []
+    
+    //converting "Open" values to number
+    let openConvertedToFloatNumber = []
 
     function convertingToNumbersOpen(obj) {
         for(let i=0;i<obj.length;i++){
             let temp = mappedOpen[i]
             let conv = temp.split('$').join("")
             let openFloat = parseFloat(conv)  
-            openArr.push(openFloat)
+            openConvertedToFloatNumber.push(openFloat)
         }
     }
     convertingToNumbersOpen(mappedOpen)
-    console.log('open',openArr)
+    console.log('open',openConvertedToFloatNumber)
 
+    //calculate simple moving average 5 days
     let sum = 0
     let avr = 0
 
     function avrCalc(){
-        for(let i=0;i<arr.length;i++){
-            sum = sum + arr[i]
+        for(let i=0;i<5;i++){
+            sum = sum + closeLastConvertedToFloatNumber[i]
         }
-    return avr = (sum / arr.length).toFixed(2)
+    return avr = (sum / 5).toFixed(2)
     }
     avrCalc()
 
+    //pushing "Open" values those bigger than average to tempArr     
     let tempArr = []
-    for(let i=0;i<openArr.length; i++){
-        if(openArr[i] > avr) {
-            tempArr.push(openArr[i])
+    for(let i=0;i<openConvertedToFloatNumber.length; i++){
+        if(openConvertedToFloatNumber[i] > avr) {
+            tempArr.push(openConvertedToFloatNumber[i])
         }
     }
-    //let maxOpen = tempArr
-    //let maxOpenToString = maxOpen.toString()
-    //console.log('aa',maxOpen)
-    //maxOpenToString = "$"+ maxOpenToString
+    
+
     let bestOpenConvertedToString = tempArr.map(String)
 
     for(let i=0;i<bestOpenConvertedToString.length;i++){
          bestOpenConvertedToString[i] = "$"+ bestOpenConvertedToString[i]
     }
     console.log('stringge', bestOpenConvertedToString)
-    //let obj = filteredDateRange.find(a => a.Open === maxOpenToString);
-    //if (obj === undefined || null) return <h2>...Loading</h2>
-      //  let theBestOpenDate = Object.values(obj)[0]
-
 
     //find best open from tempArr and return Date of object
     let bestOpeningDatesObj = [];
     
-    for(let i=0; i<filteredDateRange.length; i++) {
+        filteredDateRange.find(function(elem){
+        for(let i=0;i<bestOpenConvertedToString.length;i++){
+            if(elem.Open === bestOpenConvertedToString[i]){
+            bestOpeningDatesObj.push(elem)
+            }
+        }
+    })
+
+    /*for(let i=0; i<filteredDateRange.length; i++) {
         for(let key in filteredDateRange[i]) {
             for(let k=0;k<tempArr.length;k++){
                 if(filteredDateRange[i][key].indexOf(tempArr[k])!==-1) {
@@ -89,10 +98,10 @@ function QuestionC( {filteredDateRange} ) {
                 }
             }
         }
-    }
+    }*/
     console.log('bestOpeningDates', bestOpeningDatesObj)
 
-    //percentages
+    //calculating percentages
     let mappedBestOpenDates = bestOpeningDatesObj.map((date)=> {
         return date.Date
     })
@@ -102,8 +111,12 @@ function QuestionC( {filteredDateRange} ) {
         percArr.push((100-(avr/tempArr[i]*100)).toFixed(2) +"%")
     }
     
-    let newObj = {};
-    mappedBestOpenDates.forEach((key, i) => newObj[key] = percArr[i]);
+    //elements from mappedBestOpenDates and percArr moving to newObj
+    let newObj = [];
+    mappedBestOpenDates.forEach((key, i) => {
+        newObj[key] = percArr[i]
+    });
+    
     console.log('new obj',newObj);
 
     debugger

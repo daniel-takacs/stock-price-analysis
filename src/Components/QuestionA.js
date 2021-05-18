@@ -61,8 +61,6 @@ function QuestionA( {convertedStartDate, convertedEndDate, filteredDateRange} ) 
         bullish.push(upwardElementsConvertedToString[i] = "$"+ upwardElementsConvertedToString[i])
     }
 
-
-    
     //find upward trend values from a given date range and return Date value
     
     let results = [];

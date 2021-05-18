@@ -24,6 +24,7 @@ function QuestionB_b( {filteredDateRange} ) {
         return res.Low;
     })
    
+    //converting string to float number
     let highArr = []
     for (let i=0;i<mappedMostSignificantHigh.length;i++) {
         let temp = mappedMostSignificantHigh[i]
@@ -31,7 +32,6 @@ function QuestionB_b( {filteredDateRange} ) {
         let parse = parseFloat(convert)
         highArr.push(parse)
     }
-    //console.log('highArr', highArr)
 
     let lowArr = []
     for (let i=0;i<mappedMostSignificantLow.length;i++) {
@@ -40,11 +40,10 @@ function QuestionB_b( {filteredDateRange} ) {
         let parse = parseFloat(convert)
         lowArr.push(parse)
     }
-
+    //calculate difference
     let diff = highArr.map((a, i) => a - lowArr[i])
 
-    //let maxDiff = Math.max(...diff).toFixed(2)
-
+    //searching the largest difference
     let largest = 0
     function largestDiff(arr){
         for(let i=0; i<arr.length;i++){

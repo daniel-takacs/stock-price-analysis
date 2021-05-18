@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import ReadData from './ReadData'
-import Header from './Header'
-import QuestionA from './QuestionA'
-import QuestionB_a from './QuestionB_a'
-import QuestionB_b from './QuestionB_b'
-import QuestionC from './QuestionC'
+import ReadData from './Components/ReadData'
+import Header from './Components/Header'
+import QuestionA from './Components/QuestionA'
+import QuestionB_a from './Components/QuestionB_a'
+import QuestionB_b from './Components/QuestionB_b'
+import QuestionC from './Components/QuestionC'
 
 function App() {
 

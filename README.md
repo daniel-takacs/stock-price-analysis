@@ -1,4 +1,4 @@
-This is a pre-assigment.
+LIVE: https://daniel-takacs.github.io/stock-price-analysis/
 
 I built with React.
 Firstly converted the csv file to JSON data file. Used npm convert-csv-to-json package, Saved the data to data.js file.
